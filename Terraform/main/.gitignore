@@ -1,0 +1,4 @@
+p_key*
+service_account_*
+terraform.tfstate*
+.terraform*
