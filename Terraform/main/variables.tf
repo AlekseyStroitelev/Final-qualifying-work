@@ -13,7 +13,7 @@ variable "folder_id" {
 #Network
 variable "vpc_name" {
   type        = string
-  default     = "Kubernetes"
+  default     = "kubernetes"
   description = "VPC network & subnet name"
 }
 
@@ -41,4 +41,31 @@ variable "subnet" {
       cidr = ["192.168.30.0/24"]
     }
   }
+}
+
+#Instances
+variable "vms_resources" {
+  type    = map(object({
+    core     = number
+    memory   = number
+    fraction = number
+  }))
+  default  = {
+    master    = {
+      core     = 2
+      memory   = 8
+      fraction = 20
+    }
+    worker = {
+      core     = 2
+      memory   = 4
+      fraction = 20
+    }
+  }
+}
+
+variable "family" {
+  type        = string
+  default     = "ubuntu-2004-lts"
+  description = "The name of the image family to which this image belongs"
 }
