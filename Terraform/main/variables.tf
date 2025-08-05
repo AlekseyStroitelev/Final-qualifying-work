@@ -66,6 +66,6 @@ variable "vms_resources" {
 
 variable "family" {
   type        = string
-  default     = "ubuntu-2004-lts"
+  default     = "ubuntu-2204-lts"
   description = "The name of the image family to which this image belongs"
 }
