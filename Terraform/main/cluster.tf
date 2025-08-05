@@ -88,3 +88,15 @@ resource "yandex_compute_instance" "worker-2" {
 data "yandex_compute_image" "ubuntu" {
   family = var.family
 }
+
+data "yandex_compute_instance" "master" {
+  instance_id = yandex_compute_instance.master.id
+}
+
+data "yandex_compute_instance" "worker-1" {
+  instance_id = yandex_compute_instance.worker-1.id
+}
+
+data "yandex_compute_instance" "worker-2" {
+  instance_id = yandex_compute_instance.worker-2.id
+}
