@@ -22,7 +22,7 @@ resource "yandex_compute_instance" "master" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("./p_key.pub")}"
+    ssh-keys = "ubuntu:${file("./id_rsa.pub")}"
   }
 }
 
@@ -51,7 +51,7 @@ resource "yandex_compute_instance" "worker-1" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("./p_key.pub")}"
+    ssh-keys = "ubuntu:${file("./id_rsa.pub")}"
   }
 }
 
@@ -80,7 +80,7 @@ resource "yandex_compute_instance" "worker-2" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("./p_key.pub")}"
+    ssh-keys = "ubuntu:${file("./id_rsa.pub")}"
   }
 }
 
