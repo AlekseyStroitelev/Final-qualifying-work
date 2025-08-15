@@ -19,6 +19,7 @@ resource "yandex_compute_instance" "master" {
   network_interface {
     subnet_id = yandex_vpc_subnet.k8s-a.id
     nat       = true
+    ip_address = "192.168.10.10"
   }
 
   metadata = {
@@ -48,6 +49,7 @@ resource "yandex_compute_instance" "worker-1" {
   network_interface {
     subnet_id = yandex_vpc_subnet.k8s-b.id
     nat       = true
+    ip_address = "192.168.20.10"
   }
 
   metadata = {
@@ -77,6 +79,7 @@ resource "yandex_compute_instance" "worker-2" {
   network_interface {
     subnet_id = yandex_vpc_subnet.k8s-d.id
     nat       = true
+    ip_address = "192.168.30.10"
   }
 
   metadata = {

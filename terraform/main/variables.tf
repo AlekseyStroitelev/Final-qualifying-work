@@ -40,6 +40,11 @@ variable "subnet" {
       zone = "ru-central1-d"
       cidr = ["192.168.30.0/24"]
     }
+    ha-a = {
+      name = "ha-a"
+      zone = "ru-central1-a"
+      cidr = ["192.168.40.0/24"]
+    }
   }
 }
 
@@ -57,6 +62,11 @@ variable "vms_resources" {
       fraction = 20
     }
     worker = {
+      core     = 2
+      memory   = 4
+      fraction = 20
+    }
+    ha-proxy = {
       core     = 2
       memory   = 4
       fraction = 20
