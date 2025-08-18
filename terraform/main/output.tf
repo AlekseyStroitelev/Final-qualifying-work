@@ -9,7 +9,3 @@ output "worker-1_external_ip" {
 output "worker-2_external_ip" {
     value = data.yandex_compute_instance.worker-2.network_interface.0.nat_ip_address
 }
-
-#output "ha-proxy_external_ip" {
-#    value = data.yandex_compute_instance.ha-proxy.network_interface.0.nat_ip_address
-#}

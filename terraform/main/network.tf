@@ -24,10 +24,3 @@ resource "yandex_vpc_subnet" "k8s-d" {
   network_id     = yandex_vpc_network.kubernetes.id
   v4_cidr_blocks = var.subnet.k8s-d.cidr
 }
-
-resource "yandex_vpc_subnet" "ha-a" {
-  name           = var.subnet.ha-a.name
-  zone           = var.subnet.ha-a.zone
-  network_id     = yandex_vpc_network.kubernetes.id
-  v4_cidr_blocks = var.subnet.ha-a.cidr
-}
