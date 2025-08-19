@@ -112,3 +112,152 @@
   delegate_to: localhost
   connection: local
   when: kubectl_localhost and kubeconfig_localhost
+
+- name: Create address-pool manifest
+  become: true
+  copy:
+    dest: /home/ubuntu/address-pool.yaml
+    owner: ubuntu
+    group: ubuntu
+    mode: '0644'
+    content: |
+      apiVersion: metallb.io/v1beta1
+      kind: IPAddressPool
+      metadata:
+        name: default-pool
+        namespace: metallb-system
+      spec:
+        addresses:
+        - {{ hostvars['node3'].ansible_host }}/32
+      ---
+      apiVersion: metallb.io/v1beta1
+      kind: L2Advertisement
+      metadata:
+        name: default-l2
+        namespace: metallb-system
+      spec:
+        ipAddressPools:
+        - default-pool
+
+- name: Create app manifest
+  become: true
+  copy:
+    dest: /home/ubuntu/app.yaml
+    owner: ubuntu
+    group: ubuntu
+    mode: '0644'
+    content: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: my-deployment
+        namespace: monitoring
+        labels:
+          app: my-app
+      spec:
+        replicas: 2
+        selector:
+          matchLabels:
+            app: my-app
+        template:
+          metadata:
+            labels:
+              app: my-app
+          spec:
+            containers:
+            - name: my-app
+              image: makaron7321/nginx-test-app:1.4
+              ports:
+              - containerPort: 80
+              resources:
+                requests:
+                  cpu: "100m"
+                  memory: "128Mi"
+                limits:
+                  cpu: "200m"
+                  memory: "256Mi"
+
+      ---
+      apiVersion: v1
+      kind: Service
+      metadata:
+        name: my-app-service
+        namespace: monitoring
+      spec:
+        selector:
+          app: my-app
+        ports:
+          - protocol: TCP
+            port: 80
+            targetPort: 80
+        type: ClusterIP
+
+- name: Create ingress manifest
+  become: true
+  copy:
+    dest: /home/ubuntu/ingress.yaml
+    owner: ubuntu
+    group: ubuntu
+    mode: '0644'
+    content: |
+      apiVersion: networking.k8s.io/v1
+      kind: Ingress
+      metadata:
+        name: my-ingress
+        namespace: monitoring
+        annotations:
+          nginx.ingress.kubernetes.io/rewrite-target: /
+      spec:
+        ingressClassName: nginx
+        rules:
+        - http:
+            paths:
+            - path: /
+              pathType: Prefix
+              backend:
+                service:
+                  name: prometheus-grafana
+                  port:
+                    number: 80
+            - path: /app
+              pathType: Prefix
+              backend:
+                service:
+                  name: my-app-service
+                  port:
+                    number: 80
+
+- name: Create values manifest
+  become: true
+  copy:
+    dest: /home/ubuntu/values.yaml
+    owner: ubuntu
+    group: ubuntu
+    mode: '0644'
+    content: |
+      grafana:
+        service:
+        adminPassword: "admin"
+
+- name: Create sh screept
+  become: true
+  copy:
+    dest: /home/ubuntu/screept.sh
+    owner: ubuntu
+    group: ubuntu
+    mode: '0744'
+    content: |
+      #!/bin/bash
+      sudo mkdir /home/ubuntu/.kube
+      sudo cp /root/.kube/config /home/ubuntu/.kube/config
+      sudo chown ubuntu:ubuntu /home/ubuntu/.kube -R
+      kubectl create namespace monitoring
+      kubectl create namespace metallb-system
+      helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+      helm repo add metallb https://metallb.github.io/metallb
+      helm repo update
+      helm install metallb metallb/metallb -n metallb-system
+      helm install prometheus prometheus-community/kube-prometheus-stack -n monitoring -f values.yaml
+      kubectl apply -f ingress.yaml
+      kubectl apply -f address-pool.yaml
+      kubectl apply -f app.yaml
