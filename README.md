@@ -13,20 +13,14 @@
 
 ### Создание облачной инфраструктуры
 
-1. Создан сервисный аккаунт `bucket-sa` для s3 bucket. Данный бакет в дальнейшем будет использоватьяс для хранения state-файла terraform: </br>
+1. Создан сервисный аккаунт `bucket-sa` для S3 bucket. Данный бакет в дальнейшем будет использоватьяс для хранения state-файла terraform: </br>
     ![1_2](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_2.png)
-2. Подготовьте [backend](https://developer.hashicorp.com/terraform/language/backend) для Terraform:  
-   а. Рекомендуемый вариант: S3 bucket в созданном ЯО аккаунте(создание бакета через TF)
-   б. Альтернативный вариант:  [Terraform Cloud](https://app.terraform.io/)
-3. Создайте конфигурацию Terrafrom, используя созданный бакет ранее как бекенд для хранения стейт файла. Конфигурации Terraform для создания сервисного аккаунта и бакета и основной инфраструктуры следует сохранить в разных папках.
-4. Создайте VPC с подсетями в разных зонах доступности.
-5. Убедитесь, что теперь вы можете выполнить команды `terraform destroy` и `terraform apply` без дополнительных ручных действий.
-6. В случае использования [Terraform Cloud](https://app.terraform.io/) в качестве [backend](https://developer.hashicorp.com/terraform/language/backend) убедитесь, что применение изменений успешно проходит, используя web-интерфейс Terraform cloud.
-
-Ожидаемые результаты:
-
-1. Terraform сконфигурирован и создание инфраструктуры посредством Terraform возможно без дополнительных ручных действий, стейт основной конфигурации сохраняется в бакете или Terraform Cloud
-2. Полученная конфигурация инфраструктуры является предварительной, поэтому в ходе дальнейшего выполнения задания возможны изменения.
+2. Создан S3 bucket с целью использования в качестве бекенд для хранения стейт файла, так же создана VPC с подсетями в разных зонах доступности. Команды `terraform apply`, `terraform destroy` отрабатывают без дополнительных действий: </br>
+    ![1_3](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_3.png) </br>
+    ![1_4](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_4.png) </br>
+    ![1_5](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_5.png) </br>
+    ![1_6](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_6.png) </br>
+    ![1_7](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_7.png) </br>
 
 ---
 ### Создание Kubernetes кластера
