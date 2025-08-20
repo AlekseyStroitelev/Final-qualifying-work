@@ -14,7 +14,7 @@
 ### Создание облачной инфраструктуры
 
 1. Создан сервисный аккаунт `bucket-sa` для s3 bucket. Данный бакет в дальнейшем будет использоватьяс для хранения state-файла terraform:
-    [!1_2](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_2.png)
+    ![1_2](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_2.png)
 2. Подготовьте [backend](https://developer.hashicorp.com/terraform/language/backend) для Terraform:  
    а. Рекомендуемый вариант: S3 bucket в созданном ЯО аккаунте(создание бакета через TF)
    б. Альтернативный вариант:  [Terraform Cloud](https://app.terraform.io/)
