@@ -76,10 +76,3 @@ variable "path_to_inventory" {
   default = "/home/makaron/final-qualifying-work/kubespray/inventory/mycluster"
   description = "The path to inventory file in kubespray directory"
 }
-
-#Path to kubespray
-variable "path_to_kubespray" {
-  type = string
-  default = "/home/makaron/final-qualifying-work/kubespray"
-  description = "The path to kubespray directory"
-}
