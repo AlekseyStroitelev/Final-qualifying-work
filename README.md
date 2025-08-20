@@ -37,7 +37,7 @@
 
 1. Git репозиторий с тестовым приложением и Dockerfile [тут](https://github.com/AlekseyStroitelev/app-config)
 2. Регистри с собранным docker image является [DockerHub](https://hub.docker.com/repository/docker/makaron7321/nginx-test-app/general)
-3. Как писал выше, приложение доступно на 80 порту с добавлением в URL /app:</br>
+3. Как описано в предыдущем пункте,приложение доступно на 80 порту, с добавлением в URL /app:</br>
   ![1_10](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_10.png)
 
 ---
