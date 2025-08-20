@@ -30,24 +30,13 @@
 Манифесты на развертывание инфраструктцры находятся [здесь](https://github.com/AlekseyStroitelev/final-qualifying-work/tree/main/terraform), так же реализована функция автоматического создания inventory файла для kubespray. Не хитрыми действиями по средствам набора ansible ролей (kubespray) был развернут kubernetes кластер. В одну из ролей были добавлены функции копирования на master ноду некоторых манифестов для k8s и скрипт запуска их применения. Kubespray находится [здесь](https://github.com/AlekseyStroitelev/final-qualifying-work/tree/main/kubespray)
 2. Команда `kubectl get pods --all-namespaces` отрабатывает без ошибок, так же в результате работы kubespray и последующего запуска sh скрипта c master-ноды, получаем kubernetes кластер с задеплоиным web-приложением и системой мониторинга, которые в свою очередь доступны из вне по 80 порту: </br>
    ![1_9](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_9.png) </br>
+Листинг манифестов и скрипта [тут](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/kubespray/roles/kubernetes/client/tasks/main.yml) начиная со строки 116.
 
 ---
 ### Создание тестового приложения
 
-Для перехода к следующему этапу необходимо подготовить тестовое приложение, эмулирующее основное приложение разрабатываемое вашей компанией.
-
-Способ подготовки:
-
-1. Рекомендуемый вариант:  
-   а. Создайте отдельный git репозиторий с простым nginx конфигом, который будет отдавать статические данные.  
-   б. Подготовьте Dockerfile для создания образа приложения.  
-2. Альтернативный вариант:  
-   а. Используйте любой другой код, главное, чтобы был самостоятельно создан Dockerfile.
-
-Ожидаемый результат:
-
-1. Git репозиторий с тестовым приложением и Dockerfile.
-2. Регистри с собранным docker image. В качестве регистри может быть DockerHub или [Yandex Container Registry](https://cloud.yandex.ru/services/container-registry), созданный также с помощью terraform.
+1. Git репозиторий с тестовым приложением и Dockerfile [тут](https://github.com/AlekseyStroitelev/app-config)
+2. Регистри с собранным docker image является [DockerHub](https://hub.docker.com/repository/docker/makaron7321/nginx-test-app/general)
 
 ---
 ### Подготовка cистемы мониторинга и деплой приложения
