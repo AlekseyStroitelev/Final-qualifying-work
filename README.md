@@ -28,7 +28,7 @@
 1. Так как данное задание не включает требование создания HA кластера, то упустим тот факт, что etcd работает по RAFT и создадим кластер из трех машин, одна master-нода и две worker-ноды:
    ![1_8](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_8.png) </br>
 Манифесты на развертывание инфраструктцры находятся [здесь](https://github.com/AlekseyStroitelev/final-qualifying-work/tree/main/terraform), так же реализована функция автоматического создания inventory файла для kubespray. Не хитрыми действиями по средствам набора ansible ролей (kubespray) был развернут kubernetes кластер. В одну из ролей были добавлены функции копирования на master ноду некоторых манифестов для k8s и скрипт запуска их применения. Kubespray находится [здесь](https://github.com/AlekseyStroitelev/final-qualifying-work/tree/main/kubespray)
-2. Команда `kubectl get pods --all-namespaces` отрабатывает без ошибок, так же в результате работы kubespray и последующего запуска sh скрипта c master-ноды, получаем kubernetes кластер с задеплоиным web-приложением и системой мониторинга, которые в свою очередь доступны из вне по 80 порту: </br>
+2. Команда `kubectl get pods --all-namespaces` отрабатывает без ошибок, так же в результате работы kubespray и последующего запуска sh скрипта c master-ноды, получаем kubernetes кластер с задеплоиным web-приложением и системой мониторинга, которые в свою очередь доступны из вне на 80 порту: </br>
    ![1_9](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_9.png) </br>
 Листинг манифестов и скрипта [тут](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/kubespray/roles/kubernetes/client/tasks/main.yml) начиная со строки 116.
 
@@ -37,7 +37,7 @@
 
 1. Git репозиторий с тестовым приложением и Dockerfile [тут](https://github.com/AlekseyStroitelev/app-config)
 2. Регистри с собранным docker image является [DockerHub](https://hub.docker.com/repository/docker/makaron7321/nginx-test-app/general)
-3. Как писал выше, приложение доступно по 80 порту с добавлением в URL /app:</br>
+3. Как писал выше, приложение доступно на 80 порту с добавлением в URL /app:</br>
   ![1_10](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_10.png)
 
 ---
