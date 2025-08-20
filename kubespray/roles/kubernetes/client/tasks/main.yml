@@ -248,16 +248,52 @@
     mode: '0744'
     content: |
       #!/bin/bash
-      sudo mkdir /home/ubuntu/.kube
-      sudo cp /root/.kube/config /home/ubuntu/.kube/config
-      sudo chown ubuntu:ubuntu /home/ubuntu/.kube -R
-      kubectl create namespace monitoring
-      kubectl create namespace metallb-system
-      helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-      helm repo add metallb https://metallb.github.io/metallb
-      helm repo update
-      helm install metallb metallb/metallb -n metallb-system
-      helm install prometheus prometheus-community/kube-prometheus-stack -n monitoring -f values.yaml
-      kubectl apply -f ingress.yaml
-      kubectl apply -f address-pool.yaml
-      kubectl apply -f app.yaml
+
+      # Функция для выполнения команды с ожиданием
+      run_with_timeout() {
+          echo "Выполняется: $1"
+          eval $1
+          local exit_code=$?
+          if [ $exit_code -ne 0 ]; then
+              echo "Ошибка выполнения команды: $1"
+              exit $exit_code
+          fi
+          echo "Ожидание $2 секунд..."
+          sleep $2
+      }
+
+      # Таймауты между командами (в секундах)
+      TIMEOUT_SHORT=5
+      TIMEOUT_MEDIUM=15
+      TIMEOUT_LONG=30
+
+      echo "Начало выполнения скрипта..."
+
+      # Создание директории .kube и копирование конфига
+      run_with_timeout "sudo mkdir /home/ubuntu/.kube" $TIMEOUT_SHORT
+      run_with_timeout "sudo cp /root/.kube/config /home/ubuntu/.kube/config" $TIMEOUT_SHORT
+      run_with_timeout "sudo chown ubuntu:ubuntu /home/ubuntu/.kube -R" $TIMEOUT_SHORT
+
+      # Создание namespace'ов
+      run_with_timeout "kubectl create namespace monitoring" $TIMEOUT_SHORT
+      run_with_timeout "kubectl create namespace metallb-system" $TIMEOUT_SHORT
+
+      # Добавление helm репозиториев
+      run_with_timeout "helm repo add prometheus-community https://prometheus-community.github.io/helm-charts" $TIMEOUT_SHORT
+      run_with_timeout "helm repo add metallb https://metallb.github.io/metallb" $TIMEOUT_SHORT
+
+      # Обновление репозиториев
+      run_with_timeout "helm repo update" $TIMEOUT_MEDIUM
+
+      # Установка metallb
+      run_with_timeout "helm install metallb metallb/metallb -n metallb-system" $TIMEOUT_LONG
+
+      # Установка prometheus
+      run_with_timeout "helm install prometheus prometheus-community/kube-prometheus-stack -n monitoring -f values.yaml" $TIMEOUT_LONG
+
+      # Применение конфигурационных файлов
+      run_with_timeout "kubectl apply -f ingress.yaml" $TIMEOUT_SHORT
+      run_with_timeout "kubectl apply -f address-pool.yaml" $TIMEOUT_SHORT
+      run_with_timeout "kubectl apply -f app.yaml" $TIMEOUT_SHORT
+
+      echo "Скрипт успешно завершен!"
