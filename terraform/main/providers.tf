@@ -17,9 +17,7 @@ terraform {
     skip_credentials_validation = true
     #skip_requesting_account_id  = true
 
-    endpoint = {
-      s3 = "https://storage.yandexcloud.net"
-    }
+    endpoint = "https://storage.yandexcloud.net"
   }
 }
 
