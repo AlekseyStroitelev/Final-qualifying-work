@@ -6,9 +6,9 @@ name: Terraform CI/CD
 # - pull_request в ветку master (при создании/обновлении PR)
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 # Глобальные переменные окружения для всех jobs
 # TF_VERSION - версия Terraform для использования
