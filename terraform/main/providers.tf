@@ -9,15 +9,15 @@ terraform {
   backend "s3" {
     bucket     = "alexey1406"
     key        = "terraform.tfstate"
-    shared_credentials_files = [ "~/.yc/credentials" ]
+    shared_credentials_files = "~/.yc/credentials"
     profile = "default"
     region = "ru-central1"
 
     skip_region_validation      = true
     skip_credentials_validation = true
-    skip_requesting_account_id  = true
+    #skip_requesting_account_id  = true
 
-    endpoints = {
+    endpoint = {
       s3 = "https://storage.yandexcloud.net"
     }
   }
