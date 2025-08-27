@@ -26,7 +26,7 @@ resource "yandex_vpc_subnet" "k8s-d" {
 }
 
 resource "yandex_vpc_subnet" "test-actions" {
-  name           = "test-actions"
+  name           = "test-actions1"
   zone           = var.subnet.k8s-d.zone
   network_id     = yandex_vpc_network.kubernetes.id
   v4_cidr_blocks = var.subnet.k8s-d.cidr
