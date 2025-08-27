@@ -44,8 +44,8 @@ jobs:
       TF_VAR_exclude_ansible: 'true'
       
       # Переменные для Yandex Object Storage backend
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     steps:
     # Шаг 1: Клонирование репозитория
@@ -62,8 +62,8 @@ jobs:
     - name: Terraform Init
       run: |
         terraform -chdir=${{ env.TF_DIR }} init \
-          -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY }}" \
-          -backend-config="secret_key=${{ secrets.AWS_SECRET_KEY }}" \
+          -backend-config="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" \
+          -backend-config="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" \
           -backend-config="skip_credentials_validation=true" \
           -backend-config="skip_region_validation=true" \
           -backend-config="skip_metadata_api_check=true" \
