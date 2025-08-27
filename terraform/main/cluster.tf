@@ -1,8 +1,8 @@
 #Master
 resource "yandex_compute_instance" "master" {
-  name        = "k8s-master"
-  hostname    = "master-${var.vpc_name}"
-  zone        = var.subnet.k8s-a.zone
+  name     = "k8s-master"
+  hostname = "master-${var.vpc_name}"
+  zone     = var.subnet.k8s-a.zone
   resources {
     cores         = var.vms_resources.master.core
     memory        = var.vms_resources.master.memory
@@ -17,8 +17,8 @@ resource "yandex_compute_instance" "master" {
     preemptible = true
   }
   network_interface {
-    subnet_id = yandex_vpc_subnet.k8s-a.id
-    nat       = true
+    subnet_id  = yandex_vpc_subnet.k8s-a.id
+    nat        = true
     ip_address = "192.168.10.10"
   }
 
@@ -47,8 +47,8 @@ resource "yandex_compute_instance" "worker-1" {
     preemptible = true
   }
   network_interface {
-    subnet_id = yandex_vpc_subnet.k8s-b.id
-    nat       = true
+    subnet_id  = yandex_vpc_subnet.k8s-b.id
+    nat        = true
     ip_address = "192.168.20.10"
   }
 
@@ -77,8 +77,8 @@ resource "yandex_compute_instance" "worker-2" {
     preemptible = true
   }
   network_interface {
-    subnet_id = yandex_vpc_subnet.k8s-d.id
-    nat       = true
+    subnet_id  = yandex_vpc_subnet.k8s-d.id
+    nat        = true
     ip_address = "192.168.30.10"
   }
 

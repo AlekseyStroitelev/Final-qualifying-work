@@ -5,10 +5,10 @@ terraform {
     }
   }
   required_version = ">=1.5"
-  
+
   backend "s3" {
-    bucket     = "alexey1406"
-    key        = "terraform.tfstate"
+    bucket = "alexey1406"
+    key    = "terraform.tfstate"
     #shared_credentials_files = "~/.yc/credentials"
     #profile = "default"
     region = "ru-central1"

@@ -22,7 +22,7 @@ variable "subnet" {
   type = map(object({
     name = string
     zone = string
-    cidr = list(string) 
+    cidr = list(string)
   }))
   default = {
     k8s-a = {
@@ -45,13 +45,13 @@ variable "subnet" {
 
 #Instances
 variable "vms_resources" {
-  type    = map(object({
+  type = map(object({
     core     = number
     memory   = number
     fraction = number
   }))
-  default  = {
-    master    = {
+  default = {
+    master = {
       core     = 2
       memory   = 8
       fraction = 20
@@ -72,7 +72,7 @@ variable "family" {
 
 #Path to inventory
 variable "path_to_inventory" {
-  type = string
-  default = "/home/makaron/final-qualifying-work/kubespray/inventory/mycluster"
+  type        = string
+  default     = "/home/makaron/final-qualifying-work/kubespray/inventory/mycluster"
   description = "The path to inventory file in kubespray directory"
 }
