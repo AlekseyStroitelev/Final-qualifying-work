@@ -49,11 +49,11 @@
 
 ### Деплой инфраструктуры в terraform pipeline
 
-1. Так как на первом этапе мы не воспользовались [Terraform Cloud](https://app.terraform.io/), то настроим на автоматический запуск и применение конфигурации terraform из нашего git-репозитория в GitHub. Для демонстрации даннго функционала внесем изменения в `network.tf` и добавим еще одну подсеть с именем `test-actions`. Результат:
-
-![1_13](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_13.png)</br>
+1. Так как на первом этапе мы не воспользовались [Terraform Cloud](https://app.terraform.io/), то настроим на автоматический запуск и применение конфигурации terraform из нашего git-репозитория в GitHub. Для демонстрации даннго функционала внесем изменения в `network.tf` и добавим еще одну подсеть с именем `test-action`. Результат:
 
 ![1_12](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_12.png)</br>
+
+![1_13](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_13.png)</br>
 
 ---
 ### Установка и настройка CI/CD
