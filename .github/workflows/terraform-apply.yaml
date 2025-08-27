@@ -40,8 +40,6 @@ jobs:
     # Шаг 1: Клонирование репозитория на runner
     - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        path: .  # Клонируем весь репозиторий (включая поддиректорию terraform/)
 
     # Шаг 2: Установка указанной версии Terraform
     - name: Setup Terraform
@@ -81,8 +79,6 @@ jobs:
     # Шаг 1: Клонирование репозитория на runner
     - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        path: .  # Клонируем весь репозиторий
 
     # Шаг 2: Установка указанной версии Terraform
     - name: Setup Terraform
@@ -138,8 +134,6 @@ jobs:
     # Шаг 1: Клонирование репозитория на runner
     - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        path: .  # Клонируем весь репозиторий
 
     # Шаг 2: Загружаем артефакт плана (если использовали upload)
     - name: Download Terraform Plan
