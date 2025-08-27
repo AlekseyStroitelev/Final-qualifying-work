@@ -53,7 +53,8 @@
 
 <details>
     <summary>RAW_LOGS</summary>
-    2025-08-27T10:15:56.4801562Z Current runner version: '2.328.0'
+
+2025-08-27T10:15:56.4801562Z Current runner version: '2.328.0'
 2025-08-27T10:15:56.4824907Z ##[group]Runner Image Provisioner
 2025-08-27T10:15:56.4826034Z Hosted Compute Agent
 2025-08-27T10:15:56.4826602Z Version: 20250818.377
@@ -440,6 +441,7 @@
 2025-08-27T10:16:28.5291490Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
 2025-08-27T10:16:28.5321231Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
 2025-08-27T10:16:28.5642760Z Cleaning up orphan processes
+
     </details></br>
 
 ![1_12](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_12.png)</br>
