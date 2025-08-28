@@ -150,22 +150,22 @@
       apiVersion: apps/v1
       kind: Deployment
       metadata:
-        name: my-deployment
+        name: nginx-test-app
         namespace: monitoring
         labels:
-          app: my-app
+          app: nginx-test-app
       spec:
         replicas: 2
         selector:
           matchLabels:
-            app: my-app
+            app: nginx-test-app
         template:
           metadata:
             labels:
-              app: my-app
+              app: nginx-test-app
           spec:
             containers:
-            - name: my-app
+            - name: nginx-test-app
               image: makaron7321/nginx-test-app:1.4
               ports:
               - containerPort: 80
@@ -181,11 +181,11 @@
       apiVersion: v1
       kind: Service
       metadata:
-        name: my-app-service
+        name: nginx-test-app
         namespace: monitoring
       spec:
         selector:
-          app: my-app
+          app: nginx-test-app
         ports:
           - protocol: TCP
             port: 80
@@ -223,7 +223,7 @@
               pathType: Prefix
               backend:
                 service:
-                  name: my-app-service
+                  name: nginx-test-app
                   port:
                     number: 80
 
