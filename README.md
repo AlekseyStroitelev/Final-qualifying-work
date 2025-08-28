@@ -74,11 +74,11 @@
 
 Далее пробуем внести изменения в наш `index.html`(для наглядности) и делаем `git tag v1.0.4` и `git push origin v1.0.4`, собирается новый образ, пушится в dockerhub и происходит деплой новой версии в кластер:</br>
 
-![1_14](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_15.png)</br>
+![1_15](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_15.png)</br>
 
 Видим, что надпись нат картинкой изменилась:</br>
 
-![1_15](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_15.png)</br>
+![1_16](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_16.png)</br>
 
 ---
 ## Что необходимо для сдачи задания?
