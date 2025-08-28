@@ -65,13 +65,20 @@
 1. Автоматическая сборка docker образа при коммите в репозиторий с тестовым приложением.
 2. Автоматический деплой нового docker образа.
 
-Можно использовать [teamcity](https://www.jetbrains.com/ru-ru/teamcity/), [jenkins](https://www.jenkins.io/), [GitLab CI](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/) или GitHub Actions.
+Будем использовать GitHub Actions.
 
-Ожидаемый результат:
+Добавляем необходимые секреты в соотвествующий репозиторий и не забываем про `workflow`.
+Делаем простой commit и push в репо с исходниками нашего app, в результате происходит сборка образа и его push в dockerhub, шаг с деплоем в кластер скипается:
 
-1. Интерфейс ci/cd сервиса доступен по http.
-2. При любом коммите в репозиторие с тестовым приложением происходит сборка и отправка в регистр Docker образа.
-3. При создании тега (например, v1.0.0) происходит сборка и отправка с соответствующим label в регистри, а также деплой соответствующего Docker образа в кластер Kubernetes.
+![1_14](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_14.png)</br>
+
+Далее пробуем внести изменения в наш `index.html`(для наглядности) и делаем `git tag v1.0.4` и `git push origin v1.0.4`, собирается новый образ, пушится в dockerhub и происходит деплой новой версии в кластер:</br>
+
+![1_14](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_15.png)</br>
+
+Видим, что надпись нат картинкой изменилась:</br>
+
+![1_15](https://github.com/AlekseyStroitelev/final-qualifying-work/blob/main/screenshots/1_15.png)</br>
 
 ---
 ## Что необходимо для сдачи задания?
